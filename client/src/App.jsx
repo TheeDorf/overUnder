@@ -67,6 +67,14 @@ function SportsOdds() {
         </select>
         <br />
         <ul>
+        {filteredSports.map((sport) => (
+          <li key={sport.key}>
+            <h3 onClick={()=> setGameType(sport.group)} >{sport.title}</h3>
+            <p>{sport.description}</p>
+          </li>
+        ))}
+      </ul>
+        <ul>
           {filteredGames.map((game) => (
             <li key={game.key}>
               <h3>
