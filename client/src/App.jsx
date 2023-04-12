@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 
 
@@ -16,22 +16,40 @@ function SportsOdds() {
 		'X-RapidAPI-Host': 'odds.p.rapidapi.com'
   }};
 
-    fetch (apiUrl, options)
-    .then (response => response.json())
-    .then (data => setSports(data.data))
-     console.log(data);
-      
-      setSports(sortedSports);
-    })
-    .catch (error => console.error(error));
-
+  fetch(apiUrl, options)
+  .then(response => response.json())
+  .then(data => setSports(data.data))
+  .catch(error => console.error(error));
 }, []);
+
+function filterSports(){
+  return sports.filter(sport => sport.key.toLowerCase().includes(searchSport.toLowerCase()));
+}
+
+function displaySportsOdds(){
+  const filteredSports = filterSports();
+  return(
+    <div id="sports-odds-container">
+      <input type="text"
+          placeholder='search by sport'
+          value={searchSport}
+          onChange= {e => setSearchSport(e.target.value)} />
+
+    </div>
+  )
+}
+
+
+
+
+
+
+
 
   return (
     <div>
   {displaySportsOdds()}
     </div>
-  );
-  }
+  );}
 
 export default SportsOdds
