@@ -18,11 +18,12 @@ function SportsOdds() {
 
     fetch(apiUrl, options)
       .then((response) => response.json())
-      .then((data) => setSports(data.data))
+      .then((data) => setSports(data))
       .catch((error) => console.error(error));
   }, []);
 
   function filterSports() {
+   
     return sports.filter((sport) =>
       sport.title.toLowerCase().includes(searchSport.toLowerCase())
     );
@@ -47,6 +48,7 @@ function SportsOdds() {
 
   const filteredSports = filterSports();
   const filteredGames = filterGames();
+ 
 
   function displaySportsOdds() {
     return (
@@ -59,10 +61,9 @@ function SportsOdds() {
         />
         <br />
         <select value={gameType} onChange={handleGameTypeChange}>
-          <option value="">All Games</option>
+          <option value="All">All Games</option>
           <option value="game">Game</option>
           <option value="set">Set</option>
-          <option value="race">Race</option>
         </select>
         <br />
         <ul>
